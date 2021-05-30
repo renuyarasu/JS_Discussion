@@ -70,3 +70,4 @@
             listCount.innerHTML = countVal;
             console.log(rowHtml)
         }
+alert('Js Discussion!')
