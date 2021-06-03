@@ -1,14 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn JS/ES-6</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<title>Form Layout</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="./style.css" />
 </head>
+
 <body>
-    <h1>Hello JS World</h1>
-    <script src="script.js"></script>
+<main class="main">
+  <div class="container">
+    <section class="wrapper">
+      <div class="heading">
+        <h1 class="text text-large">Form Layout</h1>
+      </div>
+      <form name="login" class="form">
+        <div class="input-control">
+          <label for="name" class="input-label" hidden>First Name</label>
+          <input type="text" name="fName" class="input-field" id="fName" placeholder="First Name" />
+        </div>
+        <div class="input-control">
+          <label for="name" class="input-label" hidden>Last Name</label>
+          <input type="text" name="lName" class="input-field" id="lName" placeholder="Last Name" />
+        </div>
+        <div class="input-control">
+          <label for="email" class="input-label" hidden>Email Address</label>
+          <input type="email" name="email" class="input-field" id="email" placeholder="Email Address" />
+        </div>
+        <div class="input-control">
+          <label for="age" class="input-label" hidden>Age</label>
+          <input type="number" name="age" class="input-field" id="age" placeholder="Age" />
+        </div>
+        <div class="input-control" id="btna">
+          <input type="button" name="button" class="input-submit" value="Submit" id="btn" onClick="addRow();" />
+        </div>
+      </form>
+      <table width="100%" border="1" cellspacing="0" cellpadding="0" >
+        <thead><tr>
+          <th align="center" valign="top"> <p>First Name</p>
+          </th>
+          <th align="center" valign="top"> <p>Last Name</p>
+          </th>
+          <th align="center" valign="top"> <p>Email Address</p>
+          </th>
+          <th align="center" valign="top"> <p>Age</p>
+          </th>
+        </tr></thead>
+        <tbody id="result">
+          
+        </tbody>
+      </table>
+    </section>
+  </div>
+</main>
+<script src="script.js"></script>
 </body>
 </html>
