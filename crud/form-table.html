@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <main class="main">
+        <div class="container">
+            <section class="wrapper">
+                <div class="heading">
+                    <h1 class="text text-large">Form Layout</h1>
+                </div>
+                <form name="login" class="form" id="createForm">
+                    <div class="input-control">
+                        <label for="name" class="input-label" hidden>First Name</label>
+                        <input type="text" name="fName" class="input-field" id="fName" placeholder="First Name" />
+                    </div>
+                    <div class="input-control">
+                        <label for="name" class="input-label" hidden>Last Name</label>
+                        <input type="text" name="lName" class="input-field" id="lName" placeholder="Last Name" />
+                    </div>
+                    <div class="input-control">
+                        <label for="email" class="input-label" hidden>Email Address</label>
+                        <input type="email" name="email" class="input-field" id="email" placeholder="Email Address" />
+                    </div>
+                    <div class="input-control">
+                        <label for="age" class="input-label" hidden>Age</label>
+                        <input type="number" name="age" class="input-field" id="age" placeholder="Age" />
+                    </div>
+                    <div class="input-control" id="btna">
+                        <input type="button" name="button" class="input-submit" value="Submit" id="btn"
+                            onClick="addRow();" />
+                    </div>
+                </form>
+
+                <form name="login" class="form" id="editForm">
+                    <div class="input-control">
+                        <label for="name" class="input-label" hidden>First Name</label>
+                        <input type="text" name="fNameCreate" class="input-field" id="fNameCreate"
+                            placeholder="First Name" />
+                    </div>
+                    <div class="input-control">
+                        <label for="name" class="input-label" hidden>Last Name</label>
+                        <input type="text" name="lNameCreate" class="input-field" id="lNameCreate"
+                            placeholder="Last Name" />
+                    </div>
+                    <div class="input-control">
+                        <label for="email" class="input-label" hidden>Email Address</label>
+                        <input type="email" name="emailCreate" class="input-field" id="emailCreate"
+                            placeholder="Email Address" />
+                    </div>
+                    <div class="input-control">
+                        <label for="age" class="input-label" hidden>Age</label>
+                        <input type="number" name="ageCreate" class="input-field" id="ageCreate" placeholder="Age" />
+                    </div>
+                    <div class="input-control" id="btna">
+                        <input type="button" name="buttonCreate" class="input-submit" value="Update" id="btnCreate"
+                            onClick="updateRow();" />
+                    </div>
+                </form>
+                <table width="100%" border="1" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th align="center" valign="top">
+                                <p>First Name</p>
+                            </th>
+                            <th align="center" valign="top">
+                                <p>Last Name</p>
+                            </th>
+                            <th align="center" valign="top">
+                                <p>Email Address</p>
+                            </th>
+                            <th align="center" valign="top">
+                                <p>Age</p>
+                            </th>
+                            <th align="center" valign="top">
+                                <p>Action</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="result">
+
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+    <script>
+        function resetFieldValues() {
+            fName.value = "";
+            lName.value = "";
+            email.value = "";
+            age.value = "";
+            fNameCreate.value = "";
+            lNameCreate.value = "";
+            emailCreate.value = "";
+            ageCreate.value = "";
+        }
+
+        var dataObj = [];
+        function addRow() {
+            if (fName.value != "" || lName.value != "" || email.value || age.value) {
+                dataObj.push({
+                    firstN: fName.value,
+                    lName: lName.value,
+                    email: email.value,
+                    age: age.value
+                })
+
+            }
+            buildTable(dataObj);
+        }
+
+        function buildTable(data) {
+            var cellHtml = "";
+            if (data.length >= 1) {
+                for (i = 0; i < data.length; i++) {
+                    if( data[i].firstN != "null" && data[i].lName != "null" && data[i].email != "null" && data[i].age != "null"){
+                    cellHtml += "<tr id='row" + i + "'>";
+                    cellHtml += "<td>" + data[i].firstN + "</td>";
+                    cellHtml += "<td>" + data[i].lName + "</td>";
+                    cellHtml += "<td>" + data[i].email + "</td>";
+                    cellHtml += "<td>" + data[i].age + "</td>";
+                    cellHtml += "<td> <a href='javascript:void(0)' onClick='editItem(" + i + ")'>Edit</a> <a href='javascript:void(0)' onClick='deleteItem(" + i + ")'>Delete</a></td>";
+                    cellHtml += "</tr>";
+                }
+                }
+                document.getElementById('result').innerHTML = cellHtml;
+            } else {
+                cellHtml += "<tr><td colspan='5'>No records to show</td></tr>"
+                document.getElementById('result').innerHTML = cellHtml;
+            }
+            resetFieldValues()
+        }
+        function editItem(index) {
+            createForm.style.display = "none"
+            editForm.style.display = "block"
+            fNameCreate.value = dataObj[index].firstN;
+            lNameCreate.value = dataObj[index].lName;
+            emailCreate.value = dataObj[index].email;
+            ageCreate.value = dataObj[index].age;
+            btnCreate.setAttribute("onClick", "updateRow(" + index + ")")
+        }
+        function deleteItem(index) {
+            if (confirm('Are You Sure you want to delete  ' + dataObj[index].firstN + ' record ?')) {
+                dataObj.splice(index,1)
+                buildTable(dataObj)
+            } 
+        }
+        function updateRow(index) {
+            // var firstN = fNameCreate.value;
+            // var lName = lNameCreate.value;
+            // var email =  emailCreate.value;
+            // var age =  ageCreate.value;
+            dataObj[index].firstN = fNameCreate.value;
+            dataObj[index].lName = lNameCreate.value;
+            dataObj[index].email = emailCreate.value;
+            dataObj[index].age = ageCreate.value;
+            buildTable(dataObj)
+            createForm.style.display = "block"
+            editForm.style.display = "none"
+            resetFieldValues()
+        }
+    </script>
+</body>
+
+</html>
