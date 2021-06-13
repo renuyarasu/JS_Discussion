@@ -78,7 +78,7 @@ button {
   color: var(--color-black);
 }
 .main .wrapper {
-  max-width: 28rem;
+  max-width: 50rem;
   width: 100%;
   margin: 2rem auto;
   padding: 2rem 2.5rem;
@@ -122,7 +122,7 @@ button {
   font-weight: 500;
   line-height: inherit;
   cursor: pointer;
-  min-width: 40%;
+  min-width: 20%;
   height: auto;
   padding: 0.65rem 1.25rem;
   border: none;
@@ -159,7 +159,8 @@ button {
 }
 table {
   border-collapse: collapse;
-  width: 368px;
+  max-width: 50rem;
+  width: 100%;
 }
 table th {
   font-size: 14px;
@@ -175,12 +176,11 @@ table td {
   color: var(--color-black);
   white-space: pre-line;
   overflow: hidden;
-
 }
 tr:nth-child(even) {
   background-color: var(--color-light);
 }
 
-#editForm{
+#editForm {
   display: none;
 }
